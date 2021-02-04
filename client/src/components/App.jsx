@@ -1,7 +1,74 @@
 import React from 'react';
+import MovieListItems from './MovieList.jsx';
+import Search from './Search.jsx';
+import AddMovie from './AddMovie.jsx';
 
-const App = (props) => (
-  <div>Hello World!</div>
-);
+var movies = [
+  {title: 'Mean Girls'},
+  {title: 'Hackers'},
+  {title: 'The Grey'},
+  {title: 'Sunshine'},
+  {title: 'Ex Machina'},
+];
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: movies,
+      highlighted: false,
+      value: ''
+    };
+  }
+
+  addMovie(event) {
+    this.state.movies.push({title: this.state.value});
+    this.setState({
+      movies: this.state.movies
+    });
+  }
+
+  handleSearch(input) {
+    this.setState({
+      value: input
+    });
+  }
+
+  handleSubmit(event) {
+    var match = [];
+    for (var i = 0; i < movies.length; i++) {
+      if ((this.state.movies[i].title).includes(this.state.value)) {
+        match.push(this.state.movies[i])
+      };
+    }
+    this.setState({
+      movies: match,
+      highlighted: true
+    });
+
+  }
+
+  render() {
+    var style = {
+      backgroundColor: this.state.highlighted ? 'yellow' : 'none'
+    }
+    return (
+      <div>
+        <h1>Movie List</h1>
+        <br></br>
+        <AddMovie add={this.addMovie.bind(this)} movies={this.state.movies}/>
+        <br></br>
+        <Search style={style} onClick={this.handleSubmit.bind(this)} handleSearch={this.handleSearch.bind(this)}/>
+        <br></br>
+        <MovieListItems movies={this.state.movies} search={this.state.value} />
+      </div>
+    )
+  }
+}
+
+
 
 export default App;
+
+
+// inputVal={this.handleChange}
