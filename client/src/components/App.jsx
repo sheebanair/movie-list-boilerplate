@@ -1,6 +1,6 @@
 import React from 'react';
 import MovieListItems from './MovieList.jsx';
-import Search from './Search.jsx';
+import SearchBar from './Search.jsx';
 import AddMovie from './AddMovie.jsx';
 
 var movies = [
@@ -17,9 +17,10 @@ class App extends React.Component {
     this.state = {
       movies: movies,
       highlighted: false,
-      value: ''
     };
+
   }
+
 
   addMovie(event) {
     this.state.movies.push({title: this.state.value});
@@ -28,39 +29,36 @@ class App extends React.Component {
     });
   }
 
-  handleSearch(input) {
-    this.setState({
-      value: input
-    });
-  }
+  // handleSearch(input) {
+  //   this.setState({
+  //     value: input
+  //   });
+  // }
 
-  handleSubmit(event) {
-    var match = [];
-    for (var i = 0; i < movies.length; i++) {
-      if ((this.state.movies[i].title).includes(this.state.value)) {
-        match.push(this.state.movies[i])
-      };
-    }
-    this.setState({
-      movies: match,
-      highlighted: true
-    });
+  // handleSubmit(event) {
+  //   var match = [];
+  //   for (var i = 0; i < movies.length; i++) {
+  //     if ((this.state.movies[i].title).includes(this.state.value)) {
+  //       match.push(this.state.movies[i])
+  //     };
+  //   }
+  //   this.setState({
+  //     movies: match
+  //   });
 
-  }
+  // }
 
   render() {
-    var style = {
-      backgroundColor: this.state.highlighted ? 'yellow' : 'none'
-    }
+
     return (
       <div>
         <h1>Movie List</h1>
         <br></br>
-        <AddMovie add={this.addMovie.bind(this)} movies={this.state.movies}/>
+        {/* <AddMovie add={this.addMovie.bind(this)} movies={this.state.movies}/> */}
+        {/* <br></br> */}
+        <SearchBar />
         <br></br>
-        <Search style={style} onClick={this.handleSubmit.bind(this)} handleSearch={this.handleSearch.bind(this)}/>
-        <br></br>
-        <MovieListItems movies={this.state.movies} search={this.state.value} />
+        <MovieListItems movies={this.state.movies} />
       </div>
     )
   }
