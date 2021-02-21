@@ -12,6 +12,7 @@ class AddMovie extends React.Component {
   }
 
   handleChange(input) {
+
     this.setState({
       movie: input.target.value
     })

@@ -23,11 +23,10 @@ class SearchBar extends React.Component {
     this.state.searchValue = '';
   }
 
+
   render() {
     return (
       <form >
-        <button> Watched</button>
-        <button> To Watch</button>
       <label>
         <input name="search" placeholder="Search.." value={this.state.searchValue} onChange={this.handleChange}/>
       </label>

@@ -1,36 +1,19 @@
 import React from 'react';
+import MovieListEntry from './MovieListEntry.jsx';
+
+const MovieListItems = (props) => (
+  <div>
+   <button onClick={props.setviewtowatched}> Watched</button>
+   <button onClick={props.setviewtounwatched}> To Watch</button>
+  <div className="movie-list">
+   {props.movies.map((movie, index) => {
+      return <MovieListEntry movie={movie} key={index}/>;
+   })}
+  </div>
+  </div>
+);
 
 
-class MovieListItems extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      watched: false
-    }
-
-    this.hasWatched = this.hasWatched.bind(this);
-  }
-
-  hasWatched() {
-    this.setState({
-      watched: !this.state.watched
-    })
-  }
-
-  render() {
-    return (
-      <div onClick={this.hasWatched} className="movie-list">
-      {this.props.movies.map((movie, index) =>
-        <div key={index} movie={movie}>
-          <span>{movie.title}</span>
-          <span> {this.state.watched ? <button >Watched</button> : null}</span>
-        </div>
-      )}
-    </div>
-    );
-  }
-}
 
 
 export default MovieListItems;

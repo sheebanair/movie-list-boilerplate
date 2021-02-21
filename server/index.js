@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/api/movies', (req, res) => {
+  console.log("Insert GET request handler");
   db.connection.query('SELECT * FROM movielist', function(err, results) {
     if(err) {
       console.log(err);
@@ -31,7 +32,7 @@ app.get('/api/movies', (req, res) => {
 });
 
 app.post('/api/movies', (req, res) => {
-
+  console.log(req.body.movie);
   var queryString = `INSERT INTO movielist (movie) VALUES (?)`;
   db.connection.query(queryString, [req.body.movie], function(err, results) {
     if(err) {
