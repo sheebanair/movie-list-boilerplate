@@ -20,7 +20,6 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/api/movies', (req, res) => {
-  console.log("Insert GET request handler");
   db.connection.query('SELECT * FROM movielist', function(err, results) {
     if(err) {
       console.log(err);

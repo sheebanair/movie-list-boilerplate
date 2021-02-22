@@ -21,7 +21,7 @@ class AddMovie extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.addMovie(this.state.movie);
-    this.state.movie = '';
+    this.setState({movie: ''});
   }
 
   render() {
